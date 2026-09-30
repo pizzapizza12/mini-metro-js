@@ -564,95 +564,92 @@ const App: React.FC = () => {
       {/* Setup Screen */}
       {gamePhase === 'setup' && (
          <div className="absolute inset-0 z-50 bg-[#fcf9f2] flex flex-col items-center justify-center p-4 overflow-auto">
-            {/* Animated Background */}
-            <AnimatedBackground width={window.innerWidth} height={window.innerHeight} />
-            
-            {/* Content overlay */}
-            <div className="relative z-10 flex flex-col items-center">
-            <h1 className="text-7xl font-black tracking-tighter text-slate-800 mb-2">Mini Metro JS</h1>
-            <p className="text-slate-500 mb-2 font-medium text-center max-w-md">
-              A web-based re-implementation of the beloved puzzle strategy game
-            </p>
-            <p className="text-slate-400 mb-8 text-sm italic">Inspired by Dinosaur Polo Club's Mini Metro</p>
-            
-            {/* Difficulty Presets */}
-            <div className="mb-6">
-              <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3 text-center">Difficulty</h3>
-              <div className="flex gap-2">
-                {(['easy', 'normal', 'hard', 'extreme'] as DifficultyPreset[]).map(preset => (
-                  <button
-                    key={preset}
-                    onClick={() => handlePresetChange(preset)}
-                    className={`px-4 py-2 rounded-lg font-bold capitalize transition-all ${
-                      selectedPreset === preset 
-                        ? 'bg-slate-800 text-white shadow-lg scale-105' 
-                        : 'bg-slate-200 text-slate-600 hover:bg-slate-300'
-                    }`}
-                  >
-                    {preset}
-                  </button>
-                ))}
-              </div>
-            </div>
-            
-            {/* Terrain Style */}
-            <div className="mb-6">
-              <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3 text-center">Terrain</h3>
-              <div className="flex gap-2">
-                {Object.values(TerrainStyle).map(terrain => (
-                  <button
-                    key={terrain}
-                    onClick={() => setSetupConfig(prev => ({ ...prev, terrainStyle: terrain }))}
-                    className={`px-4 py-2 rounded-lg font-bold capitalize transition-all ${
-                      setupConfig.terrainStyle === terrain 
-                        ? 'bg-blue-600 text-white shadow-lg scale-105' 
-                        : 'bg-blue-100 text-blue-700 hover:bg-blue-200'
-                    }`}
-                  >
-                    {terrain.toLowerCase()}
-                  </button>
-                ))}
-              </div>
-            </div>
-            
-            {/* Seed */}
-            <div className="mb-6 flex items-center gap-3">
-              <label className="text-sm font-bold text-slate-500 uppercase tracking-wider">Seed:</label>
-              <input
-                type="number"
-                value={setupConfig.seed}
-                onChange={(e) => setSetupConfig(prev => ({ ...prev, seed: parseInt(e.target.value) || 0 }))}
-                className="w-32 px-3 py-2 rounded-lg border-2 border-slate-200 font-mono text-center"
-              />
-              <button
-                onClick={() => setSetupConfig(prev => ({ ...prev, seed: generateSeed() }))}
-                className="px-3 py-2 bg-slate-200 rounded-lg hover:bg-slate-300 font-bold text-slate-600"
-              >
-                🎲
-              </button>
-            </div>
-            
-            {/* Game Mode Buttons */}
-            <div className="grid grid-cols-1 gap-4 w-72">
-                <button onClick={() => initGame(GameMode.NORMAL)} className="bg-slate-800 text-white p-4 rounded-lg text-xl font-bold hover:bg-slate-700 shadow-lg transition-all hover:scale-105">
-                  Play Normal
-                </button>
-                <button onClick={() => initGame(GameMode.EXTREME)} className="bg-red-700 text-white p-4 rounded-lg text-xl font-bold hover:bg-red-600 shadow-lg transition-all hover:scale-105">
-                  Extreme Mode
-                </button>
-                <button onClick={() => initGame(GameMode.CREATIVE)} className="bg-teal-600 text-white p-4 rounded-lg text-xl font-bold hover:bg-teal-500 shadow-lg transition-all hover:scale-105">
-                  Creative Mode
-                </button>
-            </div>
-            
-            {/* Controls hint */}
-            <div className="mt-8 text-sm text-slate-400 text-center">
-              <p><strong>Controls:</strong> Drag between stations to create lines</p>
-              <p>Scroll to zoom • Click and drag on empty space to pan</p>
-              <p>Right-click to delete lines</p>
-            </div>
-            </div>
-         </div>
+             {/* Animated Background */}
+             <AnimatedBackground width={window.innerWidth} height={window.innerHeight} />
+             
+             {/* Content overlay */}
+             <div className="relative z-10 flex flex-col items-center">
+             <h1 className="text-7xl font-black tracking-tighter text-slate-800 mb-2">Mini Metro</h1>
+             <p className="text-slate-400 mb-8 text-sm italic">Subway strategy game</p>
+             
+             {/* Difficulty Presets */}
+             <div className="mb-6">
+               <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3 text-center">Difficulty</h3>
+               <div className="flex gap-2">
+                 {(['easy', 'normal', 'hard', 'extreme'] as DifficultyPreset[]).map(preset => (
+                   <button
+                     key={preset}
+                     onClick={() => handlePresetChange(preset)}
+                     className={`px-4 py-2 rounded-lg font-bold capitalize transition-all ${
+                       selectedPreset === preset 
+                         ? 'bg-slate-800 text-white shadow-lg scale-105' 
+                         : 'bg-slate-200 text-slate-600 hover:bg-slate-300'
+                     }`}
+                   >
+                     {preset}
+                   </button>
+                 ))}
+               </div>
+             </div>
+             
+             {/* Terrain Style */}
+             <div className="mb-6">
+               <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3 text-center">Terrain</h3>
+               <div className="flex gap-2">
+                 {Object.values(TerrainStyle).map(terrain => (
+                   <button
+                     key={terrain}
+                     onClick={() => setSetupConfig(prev => ({ ...prev, terrainStyle: terrain }))}
+                     className={`px-4 py-2 rounded-lg font-bold capitalize transition-all ${
+                       setupConfig.terrainStyle === terrain 
+                         ? 'bg-blue-600 text-white shadow-lg scale-105' 
+                         : 'bg-blue-100 text-blue-700 hover:bg-blue-200'
+                     }`}
+                   >
+                     {terrain.toLowerCase()}
+                   </button>
+                 ))}
+               </div>
+             </div>
+             
+             {/* Seed */}
+             <div className="mb-6 flex items-center gap-3">
+               <label className="text-sm font-bold text-slate-500 uppercase tracking-wider">Seed:</label>
+               <input
+                 type="number"
+                 value={setupConfig.seed}
+                 onChange={(e) => setSetupConfig(prev => ({ ...prev, seed: parseInt(e.target.value) || 0 }))}
+                 className="w-32 px-3 py-2 rounded-lg border-2 border-slate-200 font-mono text-center"
+               />
+               <button
+                 onClick={() => setSetupConfig(prev => ({ ...prev, seed: generateSeed() }))}
+                 className="px-3 py-2 bg-slate-200 rounded-lg hover:bg-slate-300 font-bold text-slate-600"
+               >
+                 🎲
+               </button>
+             </div>
+             
+             {/* Game Mode Buttons */}
+             <div className="grid grid-cols-1 gap-4 w-72">
+                 <button onClick={() => initGame(GameMode.NORMAL)} className="bg-slate-800 text-white p-4 rounded-lg text-xl font-bold hover:bg-slate-700 shadow-lg transition-all hover:scale-105">
+                   Play Normal
+                 </button>
+                 <button onClick={() => initGame(GameMode.EXTREME)} className="bg-red-700 text-white p-4 rounded-lg text-xl font-bold hover:bg-red-600 shadow-lg transition-all hover:scale-105">
+                   Extreme Mode
+                 </button>
+                 <button onClick={() => initGame(GameMode.CREATIVE)} className="bg-teal-600 text-white p-4 rounded-lg text-xl font-bold hover:bg-teal-500 shadow-lg transition-all hover:scale-105">
+                   Creative Mode
+                 </button>
+             </div>
+             
+             {/* Controls hint */}
+             <div className="mt-8 text-sm text-slate-400 text-center">
+               <p><strong>Controls:</strong> Drag between stations to create lines</p>
+               <p>Scroll to zoom • Click and drag on empty space to pan</p>
+               <p>Right-click to delete lines</p>
+             </div>
+             </div>
+          </div>
       )}
 
       <canvas
